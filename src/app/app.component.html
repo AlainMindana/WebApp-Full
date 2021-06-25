@@ -52,10 +52,18 @@
         <h1 class="display-5 fw-bold">WEB APP</h1>
         <div class="col-lg-6 mx-auto">
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
+            <button
+              routerLink="/employee"
+              type="button"
+              class="btn btn-primary btn-lg px-4 gap-3"
+            >
               EMPLOYEE
             </button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+            <button
+              routerLink="/ticket"
+              type="button"
+              class="btn btn-primary btn-lg px-4 gap-3"
+            >
               TICKET
             </button>
           </div>
@@ -63,5 +71,7 @@
       </div>
     </main>
   </body>
+  <router-outlet></router-outlet>
 </html>
-<app-employee></app-employee>
+<!-- <app-employee></app-employee> -->
+<!-- <app-ticket></app-ticket> -->

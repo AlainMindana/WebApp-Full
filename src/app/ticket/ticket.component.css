@@ -1,3 +1,173 @@
-h2 {
-  text-align: right;
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.open-button:hover {
+  opacity: 1;
+}
+
+.container {
+  overflow: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[type="checkbox"] {
+  overflow: auto;
+
+  display: none;
+}
+.container {
+  overflow: auto;
+
+  display: none;
+  background: #fff;
+  width: 410px;
+  padding: 30px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+#show:checked ~ .container {
+  display: block;
+}
+
+/* #update:checked ~ .container {
+  overflow: auto;
+
+  display: block;
+} */
+
+.container .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.container .close-btn:hover {
+  color: #3498db;
+}
+.container .text {
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+.container form {
+  margin-top: -20px;
+}
+.container form .data {
+  height: 45px;
+  width: 100%;
+  margin: 40px 0;
+}
+form .data label {
+  font-size: 18px;
+}
+form .data input {
+  height: 100%;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 17px;
+  border: 1px solid silver;
+}
+form .data input:focus {
+  border-color: #3498db;
+  border-bottom-width: 2px;
+}
+
+form .btn {
+  margin: 30px 0;
+  height: 45px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+form .btn .inner {
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  z-index: -1;
+  background: -webkit-linear-gradient(
+    right,
+    #56d8e4,
+    #9f01ea,
+    #56d8e4,
+    #9f01ea
+  );
+  transition: all 0.4s;
+}
+form .btn:hover .inner {
+  left: 0;
+}
+form .btn button {
+  height: 100%;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* update section */
+.updateContainer {
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.updateContainer {
+  overflow: auto;
+
+  display: none;
+  background: #fff;
+  width: 410px;
+  padding: 30px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+#update:active ~ .updateContainer {
+  overflow: auto;
+
+  display: block;
+}
+
+.updateContainer .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.updateContainer .close-btn:hover {
+  color: #3498db;
+}
+.updateContainer .text {
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+.updateContainer form {
+  margin-top: -20px;
+}
+.updateContainer form .data {
+  height: 45px;
+  width: 100%;
+  margin: 40px 0;
 }

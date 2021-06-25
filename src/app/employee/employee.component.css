@@ -15,20 +15,8 @@
   opacity: 1;
 }
 
-/* 
-*/
-
-.show-btn {
-  background: #fff;
-  padding: 10px 20px;
-  font-size: 20px;
-  font-weight: 500;
-  color: #3498db;
-  cursor: pointer;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-.show-btn,
 .container {
+  overflow: auto;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -36,9 +24,13 @@
 }
 
 input[type="checkbox"] {
+  overflow: auto;
+
   display: none;
 }
 .container {
+  overflow: auto;
+  position: fixed;
   display: none;
   background: #fff;
   width: 410px;
@@ -48,6 +40,13 @@ input[type="checkbox"] {
 #show:checked ~ .container {
   display: block;
 }
+
+/* #update:checked ~ .container {
+  overflow: auto;
+
+  display: block;
+} */
+
 .container .close-btn {
   position: absolute;
   right: 20px;
@@ -85,16 +84,7 @@ form .data input:focus {
   border-color: #3498db;
   border-bottom-width: 2px;
 }
-form .forgot-pass {
-  margin-top: -8px;
-}
-form .forgot-pass a {
-  color: #3498db;
-  text-decoration: none;
-}
-form .forgot-pass a:hover {
-  text-decoration: underline;
-}
+
 form .btn {
   margin: 30px 0;
   height: 45px;
@@ -132,13 +122,52 @@ form .btn button {
   letter-spacing: 1px;
   cursor: pointer;
 }
-form .signup-link {
+
+/* update section */
+.updateContainer {
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.updateContainer {
+  overflow: auto;
+
+  display: none;
+  background: #fff;
+  width: 410px;
+  padding: 30px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+#update:focus ~ .updateContainer {
+  overflow: auto;
+
+  display: block;
+}
+
+.updateContainer .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.updateContainer .close-btn:hover {
+  color: #3498db;
+}
+.updateContainer .text {
+  font-size: 35px;
+  font-weight: 600;
   text-align: center;
 }
-form .signup-link a {
-  color: #3498db;
-  text-decoration: none;
+.updateContainer form {
+  margin-top: -20px;
 }
-form .signup-link a:hover {
-  text-decoration: underline;
+.updateContainer form .data {
+  height: 45px;
+  width: 100%;
+  margin: 40px 0;
 }

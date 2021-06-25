@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 })
 export class EmployeeComponent implements OnInit {
   employees: any = [];
-
+  value: any;
   constructor(
     private employeeService: EmployeeService,
     private location: Location
@@ -57,6 +57,18 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe();
     alert('Employee #' + updateEmp + ' has been updated!');
+    window.location.reload();
+  }
+
+  delete(deleteEmp: any): void {
+    this.employeeService.deleteEmployee(deleteEmp).subscribe();
+  }
+
+  assignTicket(ticket: any, employeeNumber: any): void {
+    this.employeeService.assignTicket(ticket, employeeNumber).subscribe();
+    alert(
+      'Employee #' + employeeNumber + ' has been assigned to Ticket ' + ticket
+    );
     window.location.reload();
   }
 }

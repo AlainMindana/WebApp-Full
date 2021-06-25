@@ -1,1 +1,204 @@
-<h2>TICKET</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TICKET</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div>
+      <!-- <h3>READ</h3> -->
+      <div id="text">
+        Search:
+        <input type="text" id="empnumInputBox" placeholder="SEARCH" />
+
+        <input type="checkbox" id="show" />
+        <label for="show" style="float: right" class="btn btn-success"
+          ><strong>+</strong> ADD TICKET</label
+        >
+
+        <div class="container">
+          <label
+            for="show"
+            class="close-btn fas fa-times"
+            title="close"
+          ></label>
+          <div class="text">UPDATE</div>
+          <form action="#">
+            <div class="data">
+              <label>TITLE</label>
+              <input type="text" required #title />
+            </div>
+            <div class="data">
+              <label>DESCRIPTION</label>
+              <input type="text" required #desc />
+            </div>
+
+            <div class="data">
+              <label>SEVERITY</label>
+              <input type="text" required #sev />
+            </div>
+
+            <div class="data">
+              <label>STATUS</label>
+              <input type="text" required #stat />
+            </div>
+
+            <div class="btn">
+              <div class="inner"></div>
+              <button
+                type="submit"
+                (click)="
+                  addTicket(title.value, desc.value, sev.value, stat.value)
+                "
+              >
+                ADD
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr style="text-align: center">
+            <th scope="col">ID</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">SEVERITY</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">ASSIGNEE</th>
+            <th scope="col">WATCHERS</th>
+            <th scope="col">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of tickets" style="text-align: center" #aa>
+            <td>{{ ticket.ticket }}</td>
+            <td>{{ ticket.title }}</td>
+            <td>{{ ticket.description }}</td>
+            <td>{{ ticket.severity }}</td>
+            <td>{{ ticket.status }}</td>
+            <!-- <td>{{ ticket.assignee }}</td> -->
+            <td>
+              <p *ngFor="let aa of ticket.assignee | keyvalue">
+                {{ aa.key }} : {{ aa.value }}
+              </p>
+            </td>
+
+            <td>
+              <p *ngFor="let watch of ticket.watchers">
+                {{ watch.id }}
+              </p>
+            </td>
+
+            <td>
+              <button type="button" class="btn btn-secondary" id="update">
+                UPDATE
+              </button>
+              <!-- <div class="updateContainer">
+                <label
+                  for="update"
+                  class="close-btn fas fa-times"
+                  title="close"
+                ></label>
+                <div class="text">UPDATE</div>
+                <form>
+                  <div class="data">
+                    <label>EMPLOYEE NUMBER</label>
+                    <input
+                      type="number"
+                      placeholder=""
+                      required
+                      #eNum
+                      disabled
+                    />
+                  </div>
+                  <div class="data">
+                    <label>FIRST NAME</label>
+                    <input type="text" placeholder="" required #fName />
+                  </div>
+
+                  <div class="data">
+                    <label>MIDDLE NAME</label>
+                    <input type="text" placeholder="" required #mName />
+                  </div>
+
+                  <div class="data">
+                    <label>LAST NAME</label>
+                    <input type="text" placeholder="" required #lName />
+                  </div>
+
+                  <div class="data">
+                    <label>DEPARTMENT</label>
+                    <input type="text" placeholder="" required #dept />
+                  </div>
+
+                  <div class="btn">
+                    <div class="inner"></div>
+                    <button type="submit">UPDATE</button>
+                  </div>
+                </form>
+              </div> -->
+
+              &nbsp;
+              <button target="_blank" class="btn btn-danger">DELETE</button>
+              &nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3>UPDATE</h3>
+      <label for="updateTik">TICKET</label>
+      <input id="updateTik" placeholder="TICKET" #updateTik /><br />
+
+      <label for="updateTitle">TITLE</label>
+      <input id="updateTitle" placeholder="TITLE" #updateTitle /><br />
+
+      <label for="updateDesc">DESCRIPTION</label>
+      <input id="updateDesc" placeholder="DESCRIPTION" #updateDesc /><br />
+
+      <label for="updateSev">SEVERITY</label>
+      <input id="updateSev" placeholder="SEVERITY" #updateSev />
+      <br />
+
+      <label for="updateStat">STATUS</label>
+      <input id="updateStat" placeholder="STATUS" #updateStat /><br />
+
+      <button
+        (click)="
+          updateTicket(
+            updateTik.value,
+            updateTitle.value,
+            updateDesc.value,
+            updateSev.value,
+            updateStat.value
+          )
+        "
+      >
+        SAVE
+      </button>
+    </div>
+    <div>
+      <h3>DELETE</h3>
+      <label for="deleteTik">TICKET</label>
+      <input id="deleteTik" placeholder="TICKET" #deleteTik /><br />
+      <button (click)="deleteTicket(deleteTik.value)">DELETE</button>
+    </div>
+
+    <div>
+      <h3>ASSIGN WATCHER</h3>
+      <label for="assignTik">TICKET</label>
+      <input id="assignTik" placeholder="TICKET" #assignTik /><br />
+      <label for="assignEmp">EMPLOYEE NUMBER</label>
+      <input id="assignEmp" placeholder="EMPLOYEE NUMBER" #assignEmp /><br />
+      <button (click)="assignWatchers(assignTik.value, assignEmp.value)">
+        ASSIGN
+      </button>
+    </div>
+  </body>
+</html>
