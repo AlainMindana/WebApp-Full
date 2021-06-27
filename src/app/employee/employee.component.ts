@@ -9,6 +9,9 @@ import { Location } from '@angular/common';
 })
 export class EmployeeComponent implements OnInit {
   employees: any = [];
+  isButtonTitleClicked: any = [];
+  empnum: any;
+
   value: any;
   constructor(
     private employeeService: EmployeeService,
@@ -62,6 +65,8 @@ export class EmployeeComponent implements OnInit {
 
   delete(deleteEmp: any): void {
     this.employeeService.deleteEmployee(deleteEmp).subscribe();
+    alert('Employee #' + deleteEmp + ' has been deleted!');
+    window.location.reload();
   }
 
   assignTicket(ticket: any, employeeNumber: any): void {
@@ -70,5 +75,15 @@ export class EmployeeComponent implements OnInit {
       'Employee #' + employeeNumber + ' has been assigned to Ticket ' + ticket
     );
     window.location.reload();
+  }
+
+  public toggle(i: number): void {
+    this.isButtonTitleClicked[i] = true;
+  }
+
+  isClicked: any = [];
+
+  public toggleAssign(i: number): void {
+    this.isClicked[i] = true;
   }
 }

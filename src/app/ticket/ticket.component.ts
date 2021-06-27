@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 })
 export class TicketComponent implements OnInit {
   tickets: any = [];
+  isClicked: any = [];
   constructor(
     private ticketService: TicketService,
     private location: Location
@@ -62,5 +63,14 @@ export class TicketComponent implements OnInit {
     this.ticketService.assignWatchers(ticket, employeeNumber).subscribe();
     alert('Employee has been assigned to ticket ' + ticket + ' as a watcher');
     window.location.reload();
+  }
+
+  public toggleUpdate(i: number): void {
+    this.isClicked[i] = true;
+  }
+
+  isClickedAssign: any = [];
+  public toggleAssign(i: number): void {
+    this.isClickedAssign[i] = true;
   }
 }

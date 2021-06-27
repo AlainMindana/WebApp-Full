@@ -126,7 +126,7 @@ form .btn button {
 /* update section */
 .updateContainer {
   overflow: auto;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -135,17 +135,11 @@ form .btn button {
 .updateContainer {
   overflow: auto;
 
-  display: none;
+  display: block;
   background: #fff;
   width: 410px;
   padding: 30px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-
-#update:focus ~ .updateContainer {
-  overflow: auto;
-
-  display: block;
 }
 
 .updateContainer .close-btn {
@@ -167,6 +161,49 @@ form .btn button {
   margin-top: -20px;
 }
 .updateContainer form .data {
+  height: 45px;
+  width: 100%;
+  margin: 40px 0;
+}
+
+/* ASSIGN SECTION */
+.assignContainer {
+  overflow: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.assignContainer {
+  overflow: auto;
+
+  display: block;
+  background: #fff;
+  width: 410px;
+  padding: 30px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.assignContainer .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.assignContainer .close-btn:hover {
+  color: #3498db;
+}
+.assignContainer .text {
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+.assignContainer form {
+  margin-top: -20px;
+}
+.assignContainer form .data {
   height: 45px;
   width: 100%;
   margin: 40px 0;

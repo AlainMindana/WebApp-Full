@@ -84,7 +84,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees" style="text-align: center" #aa>
+          <tr
+            *ngFor="let employee of employees; let i = index"
+            style="text-align: center"
+            #aa
+          >
             <td>{{ employee.id }}</td>
             <td>{{ employee.employeeNumber }}</td>
             <td>{{ employee.firstName }}</td>
@@ -92,12 +96,13 @@
             <td>{{ employee.lastName }}</td>
             <td>{{ employee.department }}</td>
             <td>
-              <button type="button" class="btn btn-warning" id="update">
+              <button (click)="toggle(i)" class="btn btn-warning" id="update">
                 UPDATE
               </button>
-              <div class="updateContainer">
+
+              <div class="updateContainer" *ngIf="isButtonTitleClicked[i]">
                 <label
-                  for="update"
+                  for="employee"
                   class="close-btn fas fa-times"
                   title="close"
                 ></label>
@@ -107,7 +112,7 @@
                     <label>EMPLOYEE NUMBER</label>
                     <input
                       type="number"
-                      placeholder="{{ employee.employeeNumber }}"
+                      value="{{ employee.employeeNumber }}"
                       required
                       #eNum
                       disabled
@@ -122,7 +127,6 @@
                       #fName
                     />
                   </div>
-
                   <div class="data">
                     <label>MIDDLE NAME</label>
                     <input
@@ -132,7 +136,6 @@
                       #mName
                     />
                   </div>
-
                   <div class="data">
                     <label>LAST NAME</label>
                     <input
@@ -142,7 +145,6 @@
                       #lName
                     />
                   </div>
-
                   <div class="data">
                     <label>DEPARTMENT</label>
                     <input
@@ -152,14 +154,13 @@
                       #dept
                     />
                   </div>
-
                   <div class="btn">
                     <div class="inner"></div>
                     <button
                       type="submit"
                       (click)="
-                        addEmployee(
-                          eNum.value,
+                        save(
+                          employee.employeeNumber,
                           fName.value,
                           mName.value,
                           lName.value,
@@ -174,9 +175,56 @@
               </div>
 
               &nbsp;
-              <button target="_blank" class="btn btn-danger">DELETE</button>
-              &nbsp; &nbsp;
-              <button target="_blank" class="btn btn-info">ASSIGN</button>
+              <button
+                (click)="delete(employee.employeeNumber)"
+                class="btn btn-danger"
+              >
+                DELETE
+              </button>
+
+              &nbsp;
+              <button
+                (click)="toggleAssign(i)"
+                class="btn btn-info"
+                id="assign"
+              >
+                ASSIGN
+              </button>
+              <div class="assignContainer" *ngIf="isClicked[i]">
+                <div class="text">ASSIGN</div>
+
+                <form>
+                  <div class="data">
+                    <label for="assignTik">TICKET</label>
+                    <input
+                      type="number"
+                      id="assignTik"
+                      placeholder="TICKET"
+                      #assignTik
+                    />
+                  </div>
+
+                  <div class="data">
+                    <label for="assignEmp">EMPLOYEE NUMBER</label>
+                    <input
+                      type="number"
+                      id="assignEmp"
+                      placeholder="EMPLOYEE NUMBER"
+                      #assignEmp
+                    />
+                  </div>
+                  <div class="btn">
+                    <div class="inner"></div>
+                    <button
+                      type="submit"
+                      (click)="assignTicket(assignTik.value, assignEmp.value)"
+                    >
+                      ASSIGN
+                    </button>
+                  </div>
+                </form>
+              </div>
+
               &nbsp;
             </td>
           </tr>
@@ -184,57 +232,6 @@
       </table>
     </div>
 
-    <div>
-      <h3>UPDATE</h3>
-      <label for="updateEmp">Employee Number: </label>
-      <input id="updateEmp" placeholder="Employee Number" #updateEmp /><br />
-
-      <label for="fname">First Name: </label>
-      <input id="updateFname" placeholder="First Name" #updateFname /><br />
-
-      <label for="midname">Middle Name: </label>
-      <input
-        id="updateMidname"
-        placeholder="Middle Name"
-        #updateMidname
-      /><br />
-
-      <label for="lname">Last Name: </label>
-      <input id="updateLname" placeholder="Last Name" #updateLname /><br />
-
-      <label for="dept">Department: </label>
-      <input id="updateDept" placeholder="Department" #updateDept /><br />
-      <button
-        (click)="
-          save(
-            updateEmp.value,
-            updateFname.value,
-            updateMidname.value,
-            updateLname.value,
-            updateDept.value
-          )
-        "
-      >
-        SAVE
-      </button>
-    </div>
-    <div>
-      <h3>DELETE</h3>
-      <label for="empDelete">Employee Number: </label>
-      <input id="empDelete" placeholder="Employee Number" #deleteEmp /><br />
-      <button (click)="delete(deleteEmp.value)">DELETE</button>
-    </div>
-
-    <div>
-      <h3>ASSIGN TICKET</h3>
-      <label for="assignTik">TICKET</label>
-      <input id="assignTik" placeholder="TICKET" #assignTik /><br />
-      <label for="assignEmp">EMPLOYEE NUMBER</label>
-      <input id="assignEmp" placeholder="EMPLOYEE NUMBER" #assignEmp /><br />
-      <button (click)="assignTicket(assignTik.value, assignEmp.value)">
-        ASSIGN
-      </button>
-    </div>
     <!-- </div> -->
   </body>
 </html>

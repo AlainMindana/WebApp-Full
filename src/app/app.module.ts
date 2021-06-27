@@ -7,6 +7,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+// import { SecurityComponent } from './security/security.component';
 
 @NgModule({
   declarations: [AppComponent, EmployeeComponent, TicketComponent],

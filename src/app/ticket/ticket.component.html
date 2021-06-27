@@ -74,13 +74,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let ticket of tickets" style="text-align: center" #aa>
+          <tr
+            *ngFor="let ticket of tickets; let i = index"
+            style="text-align: center"
+          >
             <td>{{ ticket.ticket }}</td>
             <td>{{ ticket.title }}</td>
             <td>{{ ticket.description }}</td>
             <td>{{ ticket.severity }}</td>
             <td>{{ ticket.status }}</td>
-            <!-- <td>{{ ticket.assignee }}</td> -->
             <td>
               <p *ngFor="let aa of ticket.assignee | keyvalue">
                 {{ aa.key }} : {{ aa.value }}
@@ -94,10 +96,16 @@
             </td>
 
             <td>
-              <button type="button" class="btn btn-secondary" id="update">
+              <button
+                type="button"
+                (click)="toggleUpdate(i)"
+                class="btn btn-warning"
+                id="update"
+              >
                 UPDATE
               </button>
-              <!-- <div class="updateContainer">
+
+              <div class="updateContainer" *ngIf="isClicked[i]">
                 <label
                   for="update"
                   class="close-btn fas fa-times"
@@ -106,99 +114,130 @@
                 <div class="text">UPDATE</div>
                 <form>
                   <div class="data">
-                    <label>EMPLOYEE NUMBER</label>
+                    <label>TICKET</label>
+                    <input placeholder="{{ ticket.ticket }}" disabled />
+                  </div>
+
+                  <div class="data">
+                    <label>TITLE</label>
                     <input
-                      type="number"
-                      placeholder=""
+                      type="text"
+                      value="{{ ticket.title }}"
                       required
-                      #eNum
-                      disabled
+                      #updateTitle
                     />
                   </div>
                   <div class="data">
-                    <label>FIRST NAME</label>
-                    <input type="text" placeholder="" required #fName />
+                    <label>DESCRIPTION</label>
+                    <input
+                      type="text"
+                      placeholder="{{ ticket.description }}"
+                      required
+                      #updateDescription
+                    />
                   </div>
-
                   <div class="data">
-                    <label>MIDDLE NAME</label>
-                    <input type="text" placeholder="" required #mName />
+                    <label>SEVERITY</label>
+                    <input
+                      type="text"
+                      placeholder="{{ ticket.severity }}"
+                      required
+                      #updateSeverity
+                    />
                   </div>
-
                   <div class="data">
-                    <label>LAST NAME</label>
-                    <input type="text" placeholder="" required #lName />
-                  </div>
-
-                  <div class="data">
-                    <label>DEPARTMENT</label>
-                    <input type="text" placeholder="" required #dept />
+                    <label>STATUS</label>
+                    <input
+                      type="text"
+                      placeholder="{{ ticket.status }}"
+                      required
+                      #updateStatus
+                    />
                   </div>
 
                   <div class="btn">
                     <div class="inner"></div>
-                    <button type="submit">UPDATE</button>
+                    <button
+                      type="submit"
+                      (click)="
+                        updateTicket(
+                          ticket.ticket,
+                          updateTitle.value,
+                          updateDescription.value,
+                          updateSeverity.value,
+                          updateStatus.value
+                        )
+                      "
+                    >
+                      UPDATE
+                    </button>
                   </div>
                 </form>
-              </div> -->
+              </div>
 
               &nbsp;
-              <button target="_blank" class="btn btn-danger">DELETE</button>
+              <button
+                class="btn btn-danger"
+                (click)="deleteTicket(ticket.ticket)"
+              >
+                DELETE
+              </button>
               &nbsp;
+
+              <button class="btn btn-info" (click)="toggleAssign(i)">
+                WATCHERS
+              </button>
+              <div class="assignContainer" *ngIf="isClickedAssign[i]">
+                <label
+                  for="assign"
+                  class="close-btn fas fa-times"
+                  title="close"
+                ></label>
+                <div class="text">ASSIGN WATCHER</div>
+                <form>
+                  <div class="data">
+                    <label>TICKET</label>
+                    <input
+                      type="text"
+                      placeholder="{{ ticket.ticket }}"
+                      #assignTicket
+                      disabled
+                    />
+                  </div>
+
+                  <div class="data">
+                    <label>EMPLOYEE NUMBER</label>
+                    <input type="text" required #assignEmployee />
+                  </div>
+
+                  <div class="btn">
+                    <div class="inner"></div>
+                    <button
+                      type="submit"
+                      (click)="
+                        assignWatchers(ticket.ticket, assignEmployee.value)
+                      "
+                    >
+                      ASSIGN
+                    </button>
+                  </div>
+                </form>
+              </div>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div>
-      <h3>UPDATE</h3>
-      <label for="updateTik">TICKET</label>
-      <input id="updateTik" placeholder="TICKET" #updateTik /><br />
-
-      <label for="updateTitle">TITLE</label>
-      <input id="updateTitle" placeholder="TITLE" #updateTitle /><br />
-
-      <label for="updateDesc">DESCRIPTION</label>
-      <input id="updateDesc" placeholder="DESCRIPTION" #updateDesc /><br />
-
-      <label for="updateSev">SEVERITY</label>
-      <input id="updateSev" placeholder="SEVERITY" #updateSev />
-      <br />
-
-      <label for="updateStat">STATUS</label>
-      <input id="updateStat" placeholder="STATUS" #updateStat /><br />
-
-      <button
-        (click)="
-          updateTicket(
-            updateTik.value,
-            updateTitle.value,
-            updateDesc.value,
-            updateSev.value,
-            updateStat.value
-          )
-        "
-      >
-        SAVE
-      </button>
-    </div>
-    <div>
-      <h3>DELETE</h3>
-      <label for="deleteTik">TICKET</label>
-      <input id="deleteTik" placeholder="TICKET" #deleteTik /><br />
-      <button (click)="deleteTicket(deleteTik.value)">DELETE</button>
-    </div>
-
-    <div>
+    <!-- <div>
       <h3>ASSIGN WATCHER</h3>
       <label for="assignTik">TICKET</label>
       <input id="assignTik" placeholder="TICKET" #assignTik /><br />
       <label for="assignEmp">EMPLOYEE NUMBER</label>
       <input id="assignEmp" placeholder="EMPLOYEE NUMBER" #assignEmp /><br />
-      <button (click)="assignWatchers(assignTik.value, assignEmp.value)">
+      <button (click)="assignWatchers(ticket.ticket, assignEmp.value)">
         ASSIGN
       </button>
-    </div>
+    </div> -->
   </body>
 </html>
