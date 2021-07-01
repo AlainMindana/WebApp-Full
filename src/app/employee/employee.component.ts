@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Location } from '@angular/common';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -10,15 +12,18 @@ import { Location } from '@angular/common';
 export class EmployeeComponent implements OnInit {
   employees: any = [];
   isButtonTitleClicked: any = [];
-  empnum: any;
+  isLoggedIn = false;
 
-  value: any;
   constructor(
     private employeeService: EmployeeService,
-    private location: Location
+    private auth: AuthService,
+    private location: Location,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = this.auth.isUserLoggedIn();
     this.getEmployees();
   }
 
@@ -86,4 +91,8 @@ export class EmployeeComponent implements OnInit {
   public toggleAssign(i: number): void {
     this.isClicked[i] = true;
   }
+
+  // logout(){
+  //   this.auth.lo
+  // }
 }

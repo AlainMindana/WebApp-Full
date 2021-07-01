@@ -12,8 +12,10 @@
       <!-- <h3>READ</h3> -->
       <div id="text">
         Search:
-        <input type="text" id="empnumInputBox" placeholder="Employee Number" />
-
+        <input type="text" placeholder="Employee Number" />
+        <button id="logout" style="float: right" class="btn btn-danger">
+          LOGOUT
+        </button>
         <input type="checkbox" id="show" />
         <label for="show" style="float: right" class="btn btn-success"
           ><strong>+</strong> ADD EMPLOYEE</label
@@ -123,7 +125,6 @@
                     <input
                       type="text"
                       placeholder="{{ employee.firstName }}"
-                      required
                       #fName
                     />
                   </div>
@@ -132,7 +133,6 @@
                     <input
                       type="text"
                       placeholder="{{ employee.middleName }}"
-                      required
                       #mName
                     />
                   </div>
@@ -141,7 +141,6 @@
                     <input
                       type="text"
                       placeholder="{{ employee.lastName }}"
-                      required
                       #lName
                     />
                   </div>
@@ -150,7 +149,6 @@
                     <input
                       type="text"
                       placeholder="{{ employee.department }}"
-                      required
                       #dept
                     />
                   </div>

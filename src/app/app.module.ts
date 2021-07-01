@@ -5,14 +5,28 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { EmployeeComponent } from './employee/employee.component';
 import { TicketComponent } from './ticket/ticket.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-// import { SecurityComponent } from './security/security.component';
+import { LoginComponent } from './login/login.component';
+import { HttpinterceptorService } from './httpinterceptor.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
-  declarations: [AppComponent, EmployeeComponent, TicketComponent],
+  declarations: [
+    AppComponent,
+    EmployeeComponent,
+    TicketComponent,
+    LoginComponent,
+    LogoutComponent,
+  ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpinterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
