@@ -7,8 +7,8 @@ import { map } from 'rxjs/operators';
 export class AuthService {
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
 
-  public username: String = '';
-  public password: String = '';
+  public username: any;
+  public password: any;
 
   constructor(private http: HttpClient) {}
 
@@ -64,7 +64,7 @@ export class AuthService {
 
   logout() {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-    // this.username = null;
-    // this.password = null;
+    this.username = null;
+    this.password = null;
   }
 }

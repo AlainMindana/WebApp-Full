@@ -92,7 +92,13 @@ export class EmployeeComponent implements OnInit {
     this.isClicked[i] = true;
   }
 
-  // logout(){
-  //   this.auth.lo
+  logout() {
+    this.auth.logout();
+    alert('LOGOUT SUCCESSFUL');
+  }
+
+  // close(){
+  //   document.getElementsByClassName(
+  //     "updateContainer").style.display = 'none'
   // }
 }

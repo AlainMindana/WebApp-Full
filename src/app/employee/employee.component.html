@@ -13,7 +13,13 @@
       <div id="text">
         Search:
         <input type="text" placeholder="Employee Number" />
-        <button id="logout" style="float: right" class="btn btn-danger">
+        <button
+          routerLink="/login"
+          id="logout"
+          style="float: right"
+          class="btn btn-danger"
+          (click)="logout()"
+        >
           LOGOUT
         </button>
         <input type="checkbox" id="show" />
@@ -50,7 +56,13 @@
 
             <div class="data">
               <label>DEPARTMENT</label>
-              <input type="text" required #dept />
+              <!-- <input type="text" required #dept /> --><br />
+              <select id="drop" #createDrop>
+                <option value="IT">IT</option>
+                <option value="HT">HR</option>
+                <option value="SALES">SALES</option>
+                <option value="ADMIN">ADMIN</option>
+              </select>
             </div>
 
             <div class="btn">
@@ -63,7 +75,7 @@
                     fName.value,
                     mName.value,
                     lName.value,
-                    dept.value
+                    createDrop.value
                   )
                 "
               >
@@ -103,12 +115,19 @@
               </button>
 
               <div class="updateContainer" *ngIf="isButtonTitleClicked[i]">
-                <label
+                <!-- <button
+                  type="button"
+                  class="close-btn fas fa-times"
+                  onclick=" document.getElementsByClassName('updateContainer').element.style.display = 'none'"
+                ></button> -->
+
+                <!-- <label
                   for="employee"
                   class="close-btn fas fa-times"
                   title="close"
-                ></label>
+                ></label> -->
                 <div class="text">UPDATE</div>
+
                 <form>
                   <div class="data">
                     <label>EMPLOYEE NUMBER</label>
@@ -125,6 +144,7 @@
                     <input
                       type="text"
                       placeholder="{{ employee.firstName }}"
+                      value="{{ employee.firstName }}"
                       #fName
                     />
                   </div>
@@ -133,6 +153,7 @@
                     <input
                       type="text"
                       placeholder="{{ employee.middleName }}"
+                      value="{{ employee.middleName }}"
                       #mName
                     />
                   </div>
@@ -141,16 +162,27 @@
                     <input
                       type="text"
                       placeholder="{{ employee.lastName }}"
+                      value="{{ employee.lastName }}"
                       #lName
                     />
                   </div>
                   <div class="data">
                     <label>DEPARTMENT</label>
-                    <input
+                    <!-- <input
                       type="text"
                       placeholder="{{ employee.department }}"
                       #dept
-                    />
+                    /> --><br />
+                    <select
+                      id="drop"
+                      value="{{ employee.department }}"
+                      #updateDrop
+                    >
+                      <option value="IT">IT</option>
+                      <option value="HT">HR</option>
+                      <option value="SALES">SALES</option>
+                      <option value="ADMIN">ADMIN</option>
+                    </select>
                   </div>
                   <div class="btn">
                     <div class="inner"></div>
@@ -162,7 +194,7 @@
                           fName.value,
                           mName.value,
                           lName.value,
-                          dept.value
+                          updateDrop.value
                         )
                       "
                     >

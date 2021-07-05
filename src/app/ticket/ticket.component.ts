@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from '../ticket.service';
 import { Location } from '@angular/common';
+import { AuthService } from '../auth.service';
+
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
@@ -11,7 +13,8 @@ export class TicketComponent implements OnInit {
   isClicked: any = [];
   constructor(
     private ticketService: TicketService,
-    private location: Location
+    private location: Location,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -72,5 +75,10 @@ export class TicketComponent implements OnInit {
   isClickedAssign: any = [];
   public toggleAssign(i: number): void {
     this.isClickedAssign[i] = true;
+  }
+
+  logout() {
+    this.auth.logout();
+    alert('LOGOUT SUCCESSFUL');
   }
 }

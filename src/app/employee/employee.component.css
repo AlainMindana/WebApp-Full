@@ -98,13 +98,14 @@ form .btn .inner {
   position: absolute;
   left: -100%;
   z-index: -1;
-  background: -webkit-linear-gradient(
+  /* background: -webkit-linear-gradient(
     right,
     #56d8e4,
     #9f01ea,
     #56d8e4,
     #9f01ea
-  );
+  ); */
+  background-color: black;
   transition: all 0.4s;
 }
 form .btn:hover .inner {
@@ -121,6 +122,11 @@ form .btn button {
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
+}
+.container #drop {
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
 }
 
 /* update section */
@@ -157,6 +163,13 @@ form .btn button {
   font-weight: 600;
   text-align: center;
 }
+
+.updateContainer #drop {
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
+}
+
 .updateContainer form {
   margin-top: -20px;
 }

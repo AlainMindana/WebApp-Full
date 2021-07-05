@@ -98,13 +98,7 @@ form .btn .inner {
   position: absolute;
   left: -100%;
   z-index: -1;
-  background: -webkit-linear-gradient(
-    right,
-    #56d8e4,
-    #9f01ea,
-    #56d8e4,
-    #9f01ea
-  );
+  background: black;
   transition: all 0.4s;
 }
 form .btn:hover .inner {
@@ -121,6 +115,12 @@ form .btn button {
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
+}
+
+.container .drop {
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
 }
 
 /* update section */
@@ -166,6 +166,12 @@ form .btn button {
   margin: 40px 0;
 }
 
+.updateContainer .drop {
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
+}
+
 /* ASSIGN SECTION */
 .assignContainer {
   overflow: auto;
@@ -207,4 +213,10 @@ form .btn button {
   height: 45px;
   width: 100%;
   margin: 40px 0;
+}
+
+.assignContainer .drop {
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
 }
